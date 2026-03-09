@@ -39,7 +39,7 @@ public class StockOrder {
         this.stockOrderName = name;
     }
     public void printContents(){
-        System.out.println(orderList);
+        System.out.println(this.orderList);
     }
     @Override
     public String toString() {

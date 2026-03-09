@@ -130,7 +130,7 @@ public class Ingredient {
      */
     @Override
     public String toString() {
-        return "Ingredient{name='" + ingredientName + "', ID='" + ingredientId + "', unit='"
-                + ingredientUnit + "', price=" + ingredientPrice + "'"; 
+        return "Ingredient{name='" + this.ingredientName + "', ID='" + this.ingredientId + "', unit='"
+                + this.ingredientUnit + "', price=" + this.ingredientPrice + "'}"; 
     }    
 }
