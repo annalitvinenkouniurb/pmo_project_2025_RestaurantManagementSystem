@@ -6,6 +6,7 @@ package it.uniurb.RestaurantMS.user;
 
 import it.uniurb.RestaurantMS.user.User;
 import it.uniurb.RestaurantMS.core.RepoInterface;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 
 /**
@@ -37,7 +38,7 @@ public class UserRepository implements RepoInterface<User> {
         }
     }
 
-    @Override
+    
     public boolean addItem(String name, String password) {
         boolean added = false;
         User newUser = new User(this.generateItemId(), name, password);        
@@ -73,7 +74,12 @@ public class UserRepository implements RepoInterface<User> {
 
     @Override
     public String toString() {
-        return "UserName: " + this.username + "eMail: " + this.email;
+        return "UserName: " + this.username;
+    }
+
+    @Override
+    public LinkedHashSet<User> getContents() {
+        return this.userList;
     }
     
 }
