@@ -14,10 +14,10 @@ import java.util.HashMap;
 public class StockOrder {
     private final int stockOrderID;
     private String stockOrderName;
-    private HashMap<Ingredient, Integer> orderList;
+    private final HashMap<Ingredient, Integer> orderList;
     
-    public StockOrder(int id, String name){
-        this.orderList = new HashMap<Ingredient, Integer>();
+    StockOrder(int id, String name){
+        this.orderList = new HashMap<>();
         this.stockOrderID = id;
         this.stockOrderName = name;
     }

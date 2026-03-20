@@ -13,7 +13,7 @@ import java.util.LinkedHashSet;
  */
 public class RecipeRepository implements RepoInterface<Recipe>{
     
-    private LinkedHashSet<Recipe> recipeList = new LinkedHashSet<>();            
+    private final LinkedHashSet<Recipe> recipeList = new LinkedHashSet<>();            
     
     /**
      * Constructor.
@@ -34,9 +34,10 @@ public class RecipeRepository implements RepoInterface<Recipe>{
         }
     }
 
-    @Override
-    public boolean addItem(Recipe recipeToAdd) {
-        boolean added = false;        
+    public boolean addItem(String name, boolean custom) {
+        boolean added = false;
+        Recipe recipeToAdd = new Recipe(this.generateItemId(), name, custom);
+        
         if(!recipeList.contains(recipeToAdd)) {
             recipeList.addLast(recipeToAdd);
             added = true;
@@ -73,17 +74,12 @@ public class RecipeRepository implements RepoInterface<Recipe>{
     }
 
     @Override
-    public void printContents(){
-        for(Recipe item : recipeList){
-            System.out.println(item.toString());
-            
-        }
+    public LinkedHashSet getContents(){
+        return this.recipeList;
     }
     
     
      public void searchRecipe(Recipe recipe) {
-        
-        
             if(this.recipeList.contains(recipe)) {
                 System.out.println(recipe);
             }

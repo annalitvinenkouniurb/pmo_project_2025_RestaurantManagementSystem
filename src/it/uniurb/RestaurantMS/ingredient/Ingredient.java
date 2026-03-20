@@ -4,12 +4,14 @@
  */
 package it.uniurb.RestaurantMS.ingredient;
 
+import it.uniurb.RestaurantMS.core.MenuItemInterface;
+
 /**
  * This Class is used to create and define ingredients and
  * their parameters.
  *
  */
-public class Ingredient {
+public class Ingredient implements MenuItemInterface{
     
     private final int ingredientId;
     private String ingredientName;
@@ -26,21 +28,12 @@ public class Ingredient {
      * @param quantity Ingredient quantity.
      */
    
-    public Ingredient(int id, String name, String unit, double price, double quantity) {
+    Ingredient(int id, String name, String unit, double price, double quantity) {
         this.ingredientId = id;
         this.ingredientName = name;
         this.ingredientUnit = unit;
         this.ingredientPrice = price;
         this.ingredientQuantity = quantity;
-        
-    }
-    
-    public Ingredient(int id, String name, String unit) {
-        this.ingredientId = id;
-        this.ingredientName = name;
-        this.ingredientUnit = unit;
-        this.ingredientPrice = 0;
-        this.ingredientQuantity = 0;
         
     }
     
@@ -63,11 +56,9 @@ public class Ingredient {
     /**
      *
      * @param name: Sets the name of the ingredient.
-     * @return Returns true if the name is successfully set.
      */
-    public boolean setIngredientName(String name) {
+    public void setIngredientName(String name) {
         this.ingredientName = name;
-        return true;
     }
     
     /**
@@ -81,11 +72,9 @@ public class Ingredient {
     /**
      *
      * @param unit: Sets the measurement unit of the ingredient.
-     * @return Returns true if the measurement unit is successfully set.
      */
-    public boolean setIngredientUnit(String unit) {
+    public void setIngredientUnit(String unit) {
         this.ingredientUnit = unit;
-        return true;
     }
     
     /**
@@ -99,11 +88,9 @@ public class Ingredient {
     /**
      *
      * @param price: Sets the price of the ingredient.
-     * @return Returns true if the price is successfully set.
      */
-    public boolean setIngredientPrice(double price) {
+    public void setIngredientPrice(double price) {
         this.ingredientPrice = price;
-        return true;
     }
     
     /**
@@ -117,11 +104,9 @@ public class Ingredient {
     /**
      *
      * @param quantity: Sets the quantity of the ingredient.
-     * @return Returns true if the quantity is successfully set.
      */
-    public boolean setIngredientQuantity(double quantity) {
+    public void setIngredientQuantity(double quantity) {
         this.ingredientQuantity = quantity;
-        return true;
     }
     
     /**
@@ -133,4 +118,5 @@ public class Ingredient {
         return "Ingredient{name='" + this.ingredientName + "', ID='" + this.ingredientId + "', unit='"
                 + this.ingredientUnit + "', price=" + this.ingredientPrice + "'}"; 
     }    
+
 }

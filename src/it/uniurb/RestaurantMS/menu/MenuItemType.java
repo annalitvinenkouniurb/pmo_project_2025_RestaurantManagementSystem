@@ -8,13 +8,12 @@ package it.uniurb.RestaurantMS.menu;
  * Define dishes type.
  * 
  */
-public enum DishType {
+public enum MenuItemType {
     STARTER,
     FIRST_COURSE,
     SECOND_COURSE,
     SIDE_DISH,
     PIZZA,
     DESSERT,
-    DRINK
-    
+    DRINK,
 }

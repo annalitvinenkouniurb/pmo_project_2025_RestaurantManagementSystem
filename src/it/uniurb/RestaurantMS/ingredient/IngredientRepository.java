@@ -5,7 +5,6 @@
 package it.uniurb.RestaurantMS.ingredient;
 
 import it.uniurb.RestaurantMS.core.RepoInterface;
-import it.uniurb.RestaurantMS.ingredient.Ingredient;
 import java.util.LinkedHashSet;
 
 /**
@@ -14,12 +13,12 @@ import java.util.LinkedHashSet;
  */
 public class IngredientRepository implements RepoInterface<Ingredient> {
     
-    private LinkedHashSet<Ingredient> ingredientList = new LinkedHashSet<>();            
+    private final LinkedHashSet<Ingredient> ingredientList;            
     /**
      * Constructor.
      */
     public IngredientRepository() {
-        
+        this.ingredientList = new LinkedHashSet<>();
     }
     
     /**
@@ -39,13 +38,18 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
     
     /**
      *
-     * @param ingredientToAdd
+     * @param name
+     * @param unit
+     * @param price
+     * @param quantity
      * @return Return true if the ingredient has been added to the list.
      */
     
-    @Override
-    public boolean addItem(Ingredient ingredientToAdd) {
-        boolean added = false;        
+    public boolean addItem(String name, String unit, double price, double quantity) {
+        boolean added = false;
+        Ingredient ingredientToAdd = new Ingredient(this.generateItemId(), name, 
+                unit, price, quantity);
+        
         if(!ingredientList.contains(ingredientToAdd)) {
             ingredientList.addLast(ingredientToAdd);
             added = true;
@@ -69,23 +73,6 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
         return removed;
     }
 
-    /**
-     *
-     * @param ingredient Ingredient to search in the list.
-     */
-    public void searchIngredient(Ingredient ingredient) {
-        
-        
-            if(this.ingredientList.contains(ingredient)) {
-                System.out.println(ingredient);
-            }
-            else{
-                System.out.println(ingredient + " non presente.");
-            }
-        
-    }
-
-
     @Override
     public boolean updateItemName(Ingredient ingredientToUpdate, String newName) {
         boolean updated = false;
@@ -98,10 +85,22 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
     }
 
     @Override
-    public void printContents(){
-        for(Ingredient item : ingredientList){
-            System.out.println(item.toString());
-            
+    public LinkedHashSet getContents(){
+        return this.ingredientList;
+    }
+    
+    
+    /**
+     *
+     * @param ingredient Ingredient to search in the list.
+     */
+    public void searchIngredient(Ingredient ingredient) {
+        if(this.ingredientList.contains(ingredient)) {
+            System.out.println(ingredient);
         }
+        else{
+            System.out.println(ingredient + " non presente.");
+        }
+        
     }
 }

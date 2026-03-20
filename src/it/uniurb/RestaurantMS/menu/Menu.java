@@ -4,47 +4,51 @@
  */
 package it.uniurb.RestaurantMS.menu;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 /**
  *
  * @author lucapaolillo
  */
 public class Menu {
-    private int menuId;
+    private final int menuId;
     private String menuName;
-    private ArrayList<Dish> dishes;
+    private LinkedHashSet<MenuItem> menuItemList;            
+
     
-    public Menu() {
-        this.dishes = new ArrayList<>();
-    }
-    
-    public void setMenuId(int id) {
+    Menu(int id, String name) {
         this.menuId = id;
+        this.menuName = name;
+        this.menuItemList = new LinkedHashSet<>();
     }
     
+        
     public int getMenuId() {
         return menuId;
     }
     
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
-    }
-    
+       
     public String getMenuName() {
         return this.menuName;
         
     }
-   
-    
-    public ArrayList<Dish> getMenuDishes() {
-        return dishes;
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
+
+    public void addToMenu(MenuItem itemToAdd){
+        this.menuItemList.addLast(itemToAdd);
+        
     }
     
+    public void removeFromMenu(MenuItem itemToRemove){
+        this.menuItemList.remove(itemToRemove);
+    }
     
     @Override
     public String toString() {
-        return "Name: " + this.menuName + ", ID: " + this.menuId; 
-    }
+        return "Menu{name='" + this.menuName + "', Id='" + this.menuId + "'}"; 
+    } 
     
 }

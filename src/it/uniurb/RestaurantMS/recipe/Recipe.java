@@ -4,6 +4,7 @@
  */
 package it.uniurb.RestaurantMS.recipe;
 
+import it.uniurb.RestaurantMS.core.MenuItemInterface;
 import it.uniurb.RestaurantMS.ingredient.Ingredient;
 import java.util.HashMap;
 
@@ -11,17 +12,18 @@ import java.util.HashMap;
  *
  * @author lucapaolillo
  */
-public class Recipe {
+public class Recipe  implements MenuItemInterface{
     private final int recipeId;
     private String recipeName;
     private final boolean isCustom;
-    private HashMap<Ingredient, Double> recipeList;
+    private final HashMap<Ingredient, Double> recipeList;
     
     public Recipe (int id, String name, boolean custom) {
         this.recipeId = id;
         this.recipeName = name;
         this.isCustom = custom;
-        this.recipeList = new HashMap<Ingredient, Double>();
+        this.recipeList = new HashMap<>();      
+        
     }
     
     public int getRecipeId() {
@@ -42,7 +44,6 @@ public class Recipe {
     }
     
     @Override
-    
     public String toString() {
         return "Recipe{name='" + this.recipeName + "', id='" + this.recipeId + "', 'is custom?'='"
                 + this.isCustom + "'}"; 
@@ -61,9 +62,7 @@ public class Recipe {
         this.recipeList.remove(ingr);
     }
     
-    
     public void updateIngredientQuantity(Ingredient ingr, Double newQuantity){
         this.recipeList.put(ingr, newQuantity);
     }
-        
 }

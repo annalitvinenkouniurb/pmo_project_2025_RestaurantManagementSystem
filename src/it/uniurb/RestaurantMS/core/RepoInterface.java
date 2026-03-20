@@ -4,6 +4,8 @@
  */
 package it.uniurb.RestaurantMS.core;
 
+import java.util.Collection;
+
 /**
  *
  * @author lucapaolillo
@@ -15,12 +17,6 @@ public interface RepoInterface<X> {
      * @return Id
      */
     public int generateItemId();
-    
-    /**
-     *
-     * @return Returns 1 if an element is successfully created and 0 otherwise.
-     */
-    public boolean addItem(X itemToAdd);
     
     /**
      *
@@ -38,6 +34,6 @@ public interface RepoInterface<X> {
 */ 
     public boolean updateItemName(X itemToUpdate, String name);
     
-    public void printContents();
+    public Collection<X> getContents();
     
 }

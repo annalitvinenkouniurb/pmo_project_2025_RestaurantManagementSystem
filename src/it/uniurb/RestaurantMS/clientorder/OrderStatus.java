@@ -8,8 +8,8 @@ package it.uniurb.RestaurantMS.clientorder;
  *
  * @author lucapaolillo
  */
-enum OrderStatus {
+public enum OrderStatus {
     NEW,
     IN_PROGRESS,
-    COMPLETED
+    COMPLETED,
 }

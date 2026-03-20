@@ -12,7 +12,7 @@ import java.util.LinkedHashSet;
  */
 public class StockOrderRepository implements RepoInterface<StockOrder>{
     
-    private LinkedHashSet<StockOrder> orderList = new LinkedHashSet<>();            
+    private final LinkedHashSet<StockOrder> orderList = new LinkedHashSet<>();            
     
     /**
      * Constructor.
@@ -32,15 +32,17 @@ public class StockOrderRepository implements RepoInterface<StockOrder>{
         }    
     }
             
-    @Override
-    public boolean addItem(StockOrder itemToAdd){
-        boolean added = false;        
+    public boolean addItem(String name){
+        boolean added = false;
+        StockOrder itemToAdd = new StockOrder(this.generateItemId(), name);
+        
         if(!orderList.contains(itemToAdd)) {
             orderList.addLast(itemToAdd);
             added = true;
         }
         return added;
     }
+    
     @Override
     public boolean removeItem(StockOrder itemToRemove){
         boolean removed = false;
@@ -75,11 +77,8 @@ public class StockOrderRepository implements RepoInterface<StockOrder>{
     }
     
     @Override
-    public void printContents(){
-        for(StockOrder item : orderList){
-            System.out.println(item.toString());
-            
-        }
+    public LinkedHashSet getContents(){
+        return this.orderList;
     }
     
 }

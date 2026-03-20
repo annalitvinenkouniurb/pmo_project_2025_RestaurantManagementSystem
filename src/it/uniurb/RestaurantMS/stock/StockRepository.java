@@ -5,6 +5,8 @@
 package it.uniurb.RestaurantMS.stock;
 
 import it.uniurb.RestaurantMS.core.RepoInterface;
+import it.uniurb.RestaurantMS.ingredient.Ingredient;
+import java.time.LocalDate;
 import java.util.LinkedHashSet;
 
 
@@ -14,13 +16,11 @@ import java.util.LinkedHashSet;
  */
 public class StockRepository implements RepoInterface<StockEntry> {
 
-    private LinkedHashSet<StockEntry> stockEntryList;
-    
+    private final LinkedHashSet<StockEntry> stockEntryList;
     
     public StockRepository() {
         this.stockEntryList = new LinkedHashSet<>();
     }
-            
             
    /**
      *
@@ -37,22 +37,21 @@ public class StockRepository implements RepoInterface<StockEntry> {
         }
     }
     
-       /*public LinkedHashSet<StockEntry> duplicateStockEntryList() {
-            LinkedHashSet<StockEntry> StockEntryListDuplicated = new LinkedHashSet<>();
-            this.stockEntryList = StockEntryListDuplicated;
-            return StockEntryListDuplicated;
-    }
-    */
-    
     /**
      *
-     * @param stockEntryToAdd
+     * @param expiryDate
+     * @param quantity
+     * @param ingr
+     * @param name
      * @return Return true if the stock entry has been added to the list.
      */
     
-    @Override
-    public boolean addItem(StockEntry stockEntryToAdd) {
-        boolean added = false;        
+    public boolean addItem(LocalDate expiryDate, Double quantity, 
+            Ingredient ingr, String name) {
+        boolean added = false;
+        StockEntry stockEntryToAdd = new StockEntry(this.generateItemId(), 
+                expiryDate, quantity, ingr, name);
+        
         if(!stockEntryList.contains(stockEntryToAdd)) {
             stockEntryList.addLast(stockEntryToAdd);
             added = true;
@@ -75,28 +74,12 @@ public class StockRepository implements RepoInterface<StockEntry> {
         }
         return removed;
     }
-
     
-    /**
-     *
-     * @param stockEntryToSearch Stock entry to search in the list.
-     */
-    /* public void searchStockEntry(StockEntry stockEntryToSearch) {
-            if(this.stockEntryList.contains(stockEntryToSearch)) {
-                System.out.println(stockEntryToSearch);
-            }
-            else{
-                System.out.println(stockEntryToSearch + " non presente.");
-            }        
-    }
-*/
-    
-
     @Override
     public boolean updateItemName(StockEntry stockEntryToUpdate, String newName) {
         boolean updated = false;
         if(stockEntryList.contains(stockEntryToUpdate)) {
-            stockEntryToUpdate.setStockEntrytName(newName);
+            stockEntryToUpdate.setStockEntryName(newName);
             updated = true;
         }
         return updated;
@@ -104,12 +87,8 @@ public class StockRepository implements RepoInterface<StockEntry> {
     }
 
     @Override
-    public void printContents(){
-        for(StockEntry item : stockEntryList){
-            System.out.println(item.toString());
-            
-        }
+    public LinkedHashSet getContents(){
+        return this.stockEntryList;
     }
-    
     
 }

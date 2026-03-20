@@ -12,12 +12,11 @@ import java.time.LocalDate;
  * @author lucapaolillo
  */
 public class StockEntry {
-    
     private final int stockEntryId;
-    private String stockEntryName;
     private LocalDate stockEntryExpireDate;
     private Double stockEntryQuantity;
-    private Ingredient ingr;
+    private final Ingredient entryIngredient;
+    private String entryName;
     
     /**
      *
@@ -25,10 +24,13 @@ public class StockEntry {
      * @param name
      * @param expireDate
      */
-    public StockEntry(int id, String name, LocalDate expireDate) {
+    
+    StockEntry(int id, LocalDate expireDate, Double quantity, Ingredient ingr, String name) {
         this.stockEntryId = id;
-        this.stockEntryName = name;
-        this.stockEntryExpireDate = expireDate;        
+        this.stockEntryExpireDate = expireDate;
+        this.stockEntryQuantity = quantity;
+        this.entryIngredient = ingr;
+        this.entryName = name;
     }
     
     /**
@@ -39,21 +41,6 @@ public class StockEntry {
         return this.stockEntryId;
     }
     
-    /**
-     *
-     * @return
-     */
-    public String getStockEntryName() {
-        return this.stockEntryName;
-    }
-    
-    /**
-     *
-     * @param name
-     */
-    public void setStockEntrytName(String name) {
-        this.stockEntryName = name;
-    }
     
     /**
      *
@@ -83,8 +70,16 @@ public class StockEntry {
      *
      * @param newQuantity
      */
-    public void updateStockEntryQuantity(Double newQuantity) {
+    public void setStockEntryQuantity(Double newQuantity) {
         this.stockEntryQuantity = newQuantity;
+    }
+    
+    public String getStockEntryName() {
+        return this.entryName;
+    }
+    
+    public void setStockEntryName(String name) {
+        this.entryName = name;
     }
     
     /**
@@ -93,7 +88,7 @@ public class StockEntry {
      */
     @Override
     public String toString() {
-        return "StockEntry{name='" + stockEntryName + "', ID='" + stockEntryId + "', Quantity='"
+        return "StockEntry{ID='" + stockEntryId + "', Quantity='"
                 + stockEntryQuantity + "'";
     }
     
