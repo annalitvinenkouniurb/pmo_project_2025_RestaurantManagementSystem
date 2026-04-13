@@ -13,27 +13,30 @@ import java.util.Collection;
 public interface RepoInterface<X> {
     
     /**
-     *Return a random Id.
+     * Method to get random ID.
      * @return Id
      */
     public int generateItemId();
     
     /**
-     *
+     * Method to remove item.
+     * @param itemToRemove Item that has to be removed.
      * @return Return 1 if an element is successfully removed and 0 otherwise.
      */
     public boolean removeItem(X itemToRemove);
     
     /**
-     *
-     * Set the name chosen.
-     * @param name Name to set.
+     * Methodo to update item name.
+     * @param itemToUpdate Item that name has to be updated.
+     * @param name New name to set.
+     * @return Return true if it has been correctly updated.
      */
-    
-    /* ???  
-*/ 
     public boolean updateItemName(X itemToUpdate, String name);
     
+    /**
+     * Method to get the contents of specific colletion.
+     * @return Return the contents of collection.
+     */
     public Collection<X> getContents();
     
 }

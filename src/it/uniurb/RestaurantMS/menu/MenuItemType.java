@@ -5,8 +5,12 @@
 package it.uniurb.RestaurantMS.menu;
 
 /**
- * Define dishes type.
+ * @author lucapaolillo
+ */
+
+/**
  * 
+ * This ENUM class defines dish types.
  */
 public enum MenuItemType {
     STARTER,

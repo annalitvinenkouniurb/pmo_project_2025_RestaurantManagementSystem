@@ -13,24 +13,46 @@ public class User {
     private String userName;
     private String userPassword;
     
+    /**
+     * 
+     * @param id User ID.
+     * @param name Username.
+     * @param password Password for the user account.
+     */
     User(int id, String name, String password) {
         this.userId = id;
         this.userName = name;
         this.userPassword = password;
     }
     
+    /**
+     * Method to return user ID.
+     * @return Return the user ID.
+     */
     public int getId() {
         return this.userId;
     }
     
+    /**
+     * Method to return username.
+     * @return Return username.
+     */
     public String getUserName() {
         return this.userName;
     }
     
-    public void setUserName(String newName) {
-        this.userName = newName;
+    /**
+     * Method to set new username.
+     * @param newUserName New username to set.
+     */
+    public void setUserName(String newUserName) {
+        this.userName = newUserName;
     }
     
+    /**
+     * Method to get user informations.
+     * @return Return some user informations.
+     */
     @Override
     public String toString() {
         return "Name: " + this.userName + " ID: " + this.userId;

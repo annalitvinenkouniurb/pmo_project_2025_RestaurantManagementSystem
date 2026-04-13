@@ -12,8 +12,8 @@ import java.util.LinkedHashSet;
  * @author lucapaolillo
  */
 public class IngredientRepository implements RepoInterface<Ingredient> {
+    private final LinkedHashSet<Ingredient> ingredientList;
     
-    private final LinkedHashSet<Ingredient> ingredientList;            
     /**
      * Constructor.
      */
@@ -22,33 +22,31 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
     }
     
     /**
-     *
-     * Generate ingredient ID;
+     * Method to generate ingredient ID.
+     * @return Return ingredient ID.
      */
     @Override
     public int generateItemId() {
         if(this.ingredientList.isEmpty()){
             return 1;
         }
-        else{
+        else {
             int id = this.ingredientList.getLast().getIngredientId();
             return id + 1;
         }
     }
     
     /**
-     *
-     * @param name
-     * @param unit
-     * @param price
-     * @param quantity
+     * Method to add ingredient.
+     * @param name Name of the ingredient to add.
+     * @param unit Measurement unit of the ingredient.
+     * @param price Price of the ingredient.
+     * @param quantity Quantity of the ingredient to add.
      * @return Return true if the ingredient has been added to the list.
      */
-    
     public boolean addItem(String name, String unit, double price, double quantity) {
         boolean added = false;
-        Ingredient ingredientToAdd = new Ingredient(this.generateItemId(), name, 
-                unit, price, quantity);
+        Ingredient ingredientToAdd = new Ingredient(this.generateItemId(), name, unit, price, quantity);
         
         if(!ingredientList.contains(ingredientToAdd)) {
             ingredientList.addLast(ingredientToAdd);
@@ -58,14 +56,14 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
     }
     
     /**
-     *
-     * @param ingredientToRemove
-     * @return Returns true if the ingredient has ben removed successfully.
+     * Method to remove ingredient.
+     * @param ingredientToRemove Ingredient to remove from the list.
+     * @return Return true if the ingredient has ben removed successfully.
      */
-    
     @Override
     public boolean removeItem(Ingredient ingredientToRemove) {
         boolean removed = false;
+        
         if(ingredientList.contains(ingredientToRemove)) {
             ingredientList.remove(ingredientToRemove);
             removed = true;
@@ -73,6 +71,12 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
         return removed;
     }
 
+    /**
+     * Method to update ingredient name.
+     * @param ingredientToUpdate Ingredient to update.
+     * @param newName New name for the ingredient.
+     * @return Return true if it has been correctly updated.
+     */
     @Override
     public boolean updateItemName(Ingredient ingredientToUpdate, String newName) {
         boolean updated = false;
@@ -81,26 +85,29 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
             updated = true;
         }
         return updated;
-        
     }
 
+    /**
+     * Method to get ingredient list.
+     * @return Return ingredient list.
+     */
     @Override
-    public LinkedHashSet getContents(){
+    public LinkedHashSet<Ingredient> getContents(){
         return this.ingredientList;
     }
     
     
     /**
-     *
-     * @param ingredient Ingredient to search in the list.
+     * Method to search ingredient.
+     * @param ingredient Ingredient to search into the list.
      */
     public void searchIngredient(Ingredient ingredient) {
         if(this.ingredientList.contains(ingredient)) {
             System.out.println(ingredient);
         }
-        else{
+        else {
             System.out.println(ingredient + " non presente.");
         }
-        
     }
+    
 }

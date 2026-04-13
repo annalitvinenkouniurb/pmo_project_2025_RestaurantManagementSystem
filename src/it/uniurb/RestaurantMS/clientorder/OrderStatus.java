@@ -8,6 +8,11 @@ package it.uniurb.RestaurantMS.clientorder;
  *
  * @author lucapaolillo
  */
+
+/**
+ * 
+ * This ENUM class defines different order statuses.
+ */
 public enum OrderStatus {
     NEW,
     IN_PROGRESS,
