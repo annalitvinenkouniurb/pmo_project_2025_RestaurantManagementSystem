@@ -4,9 +4,7 @@
  */
 package it.uniurb.RestaurantMS;
 
-import it.uniurb.RestaurantMS.model.*;
-import it.uniurb.RestaurantMS.repository.*;
-
+import it.uniurb.RestaurantMS.*;
 /**
  *
  * @author lucapaolillo
@@ -17,40 +15,7 @@ public class RestaurantMS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IngredientRepository ingRepo = new IngredientRepository();
-        IngredientRepository ingRepo1 = new IngredientRepository();
-        StockOrderRepository orderRepo = new StockOrderRepository();
-        StockOrder order1 = new StockOrder(orderRepo.generateItemId(), "Order N. 1");
-        orderRepo.addItem(order1);
-        StockOrder order2 = new StockOrder(orderRepo.generateItemId(), "Order N. 2");
-        orderRepo.addItem(order2);
-        
-        Ingredient ingredient1 = new Ingredient(ingRepo.generateItemId(), "Cipolla", "Kg", 2.0, 10);        
-        ingRepo.addItem(ingredient1);
-        
-        Ingredient ingredient2 = new Ingredient(ingRepo.generateItemId(), "Latte", "Lt", 1.35, 10);        
-        ingRepo.addItem(ingredient2);
-        
-        Ingredient ingredient3 = new Ingredient(ingRepo.generateItemId(), "Burro", "Kg", 3.7, 1.5);
-        ingRepo.addItem(ingredient3);
-        
-        Ingredient ingredient4 = new Ingredient(ingRepo1.generateItemId(), "Cipolla", "Kg", 2.0, 10);        
-        ingRepo1.addItem(ingredient1);
-        
-        Ingredient ingredient5 = new Ingredient(ingRepo1.generateItemId(), "Latte", "Lt", 1.35, 10);        
-        ingRepo1.addItem(ingredient2);
-        
-        Ingredient ingredient6 = new Ingredient(ingRepo1.generateItemId(), "Burro", "Kg", 3.7, 1.5);
-        ingRepo1.addItem(ingredient3);
-        
-        
-        order1.addIngredientToOrder(ingredient1, 10);
-        order1.addIngredientToOrder(ingredient3, 30);
-        order1.addIngredientToOrder(ingredient2, 20);
-        
-        order2.addIngredientToOrder(ingredient3, 10);
-        order2.addIngredientToOrder(ingredient2, 30);
-        order2.addIngredientToOrder(ingredient1, 20);
+
         
         /*
         order1.printContents();

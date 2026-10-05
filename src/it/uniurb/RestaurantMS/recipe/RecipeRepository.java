@@ -91,7 +91,7 @@ public class RecipeRepository implements RepoInterface<Recipe>{
      * @return Return recipe list.
      */
     @Override
-    public LinkedHashSet getContents(){
+    public LinkedHashSet<Recipe> getContents(){
         return this.recipeList;
     }
     

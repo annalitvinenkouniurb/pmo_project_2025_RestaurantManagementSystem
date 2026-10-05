@@ -85,7 +85,7 @@ public class ClientOrder {
      * Method to get client order list.
      * @return Return client order list.
      */
-    public HashMap getOrderList(){
+    public HashMap<MenuItem, Integer> getOrderList(){
         return this.orderList;
     }
     
