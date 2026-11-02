@@ -25,7 +25,7 @@ public class ClientOrder {
      * @param table Client order table.
      * @param status Client order status.
      */
-    ClientOrder(int id, String name, int table, OrderStatus status) {
+    public ClientOrder(int id, String name, int table, OrderStatus status) {
         this.orderId = id;
         this.orderTable = table;
         this.orderName = name;

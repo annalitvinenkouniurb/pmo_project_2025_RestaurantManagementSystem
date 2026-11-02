@@ -21,6 +21,9 @@ public class MenuItem {
      * @param price Price of the dish.
      * @param dishType Type of the dish.
      */
+
+    /*!!! MenuItemIterface itemContents: verificare il tipo del parametro (non dovrebbe essere 
+    un'implementzione della'interfaccia anziché l'interfaccia) */
     MenuItem(String name, double price, MenuItemType itemType, MenuItemInterface itemContents) {
         this.menuItemName = name;
         this.menuItemPrice = price;

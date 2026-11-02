@@ -15,24 +15,18 @@ public class Ingredient implements MenuItemInterface{
     
     private final int ingredientId;
     private String ingredientName;
-    private String ingredientUnit;
-    private double ingredientPrice;
-    private double ingredientQuantity;
+    private IngredientUnit ingredientUnit;
     
     /**
      * Constructor.
      * @param id Ingredient ID.
      * @param name Ingredient name.
      * @param unit Metric system used for the ingredient.
-     * @param price The price per unit of the ingredient.
-     * @param quantity Ingredient quantity.
      */
-    Ingredient(int id, String name, String unit, double price, double quantity) {
+    Ingredient(int id, String name, IngredientUnit unit) {
         this.ingredientId = id;
         this.ingredientName = name;
         this.ingredientUnit = unit;
-        this.ingredientPrice = price;
-        this.ingredientQuantity = quantity;  
     }
     
     /**
@@ -63,7 +57,7 @@ public class Ingredient implements MenuItemInterface{
      * Method to get ingredient measurement unit.
      * @return Return the measurement unit of the ingredient.
      */
-    public String getIngredientUnit() {
+    public IngredientUnit getIngredientUnit() {
         return ingredientUnit;
     }
     
@@ -71,40 +65,8 @@ public class Ingredient implements MenuItemInterface{
      * Method to set ingredient measurement unit.
      * @param unit Set the measurement unit of the ingredient.
      */
-    public void setIngredientUnit(String unit) {
+    public void setIngredientUnit(IngredientUnit unit) {
         this.ingredientUnit = unit;
-    }
-    
-    /**
-     * Method to get ingredient price.
-     * @return Return the price of the ingredient.
-     */
-    public double getIngredientPrice() {
-        return ingredientPrice;
-    }
-    
-    /**
-     * Method to set ingredient price.
-     * @param price Set the price of the ingredient.
-     */
-    public void setIngredientPrice(double price) {
-        this.ingredientPrice = price;
-    }
-    
-    /**
-     * Method to get ingredient quantity.
-     * @return Return the quantity of the ingredient.
-     */
-    public double getIngredientQuantity() {
-        return ingredientQuantity;
-    }
-    
-    /**
-     * Method to set ingredient quantity.
-     * @param quantity Set the quantity of the ingredient.
-     */
-    public void setIngredientQuantity(double quantity) {
-        this.ingredientQuantity = quantity;
     }
     
     /**
@@ -113,8 +75,8 @@ public class Ingredient implements MenuItemInterface{
      */
     @Override
     public String toString() {
-        return "Ingredient{name='" + this.ingredientName + "', ID='" + this.ingredientId + "', unit='"
-                + this.ingredientUnit + "', price=" + this.ingredientPrice + "'}"; 
+        return "Ingredient{name='" + this.ingredientName + "', ID='" 
+                + this.ingredientId + "', unit='" + this.ingredientUnit + "'}"; 
     }    
 
 }

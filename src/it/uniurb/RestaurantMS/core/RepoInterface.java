@@ -13,10 +13,17 @@ import java.util.Collection;
 public interface RepoInterface<X> {
     
     /**
-     * Method to get random ID.
+     * Method to generate item ID.
      * @return Id
      */
     public int generateItemId();
+
+    /**
+     * Create new item.
+     * @param NewItemId Id od the new item to be crated.
+     * @return Returns the new item.
+     */
+    public X addItem(int NewItemId);
     
     /**
      * Method to remove item.
@@ -26,17 +33,11 @@ public interface RepoInterface<X> {
     public boolean removeItem(X itemToRemove);
     
     /**
-     * Methodo to update item name.
-     * @param itemToUpdate Item that name has to be updated.
-     * @param name New name to set.
-     * @return Return true if it has been correctly updated.
-     */
-    public boolean updateItemName(X itemToUpdate, String name);
-    
-    /**
      * Method to get the contents of specific colletion.
      * @return Return the contents of collection.
      */
     public Collection<X> getContents();
+
+    public Object searchItemByName(String name);
     
 }

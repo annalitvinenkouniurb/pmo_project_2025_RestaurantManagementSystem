@@ -5,20 +5,25 @@
 package it.uniurb.RestaurantMS.ingredient;
 
 import it.uniurb.RestaurantMS.core.RepoInterface;
-import java.util.LinkedHashSet;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  *
  * @author lucapaolillo
  */
 public class IngredientRepository implements RepoInterface<Ingredient> {
-    private final LinkedHashSet<Ingredient> ingredientList;
+    private final HashMap<Ingredient, Double> ingredientList;
     
     /**
      * Constructor.
      */
     public IngredientRepository() {
-        this.ingredientList = new LinkedHashSet<>();
+        this.ingredientList = new HashMap<>();
     }
     
     /**
@@ -31,8 +36,13 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
             return 1;
         }
         else {
-            int id = this.ingredientList.getLast().getIngredientId();
-            return id + 1;
+            int maxId = 0;
+            for(Ingredient ing : ingredientList.keySet()){
+                if(ing.getIngredientId() > maxId){
+                    maxId = ing.getIngredientId();
+                }
+            }
+            return maxId + 1;
         }
     }
     
@@ -40,19 +50,17 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
      * Method to add ingredient.
      * @param name Name of the ingredient to add.
      * @param unit Measurement unit of the ingredient.
-     * @param price Price of the ingredient.
      * @param quantity Quantity of the ingredient to add.
      * @return Return true if the ingredient has been added to the list.
      */
-    public boolean addItem(String name, String unit, double price, double quantity) {
-        boolean added = false;
-        Ingredient ingredientToAdd = new Ingredient(this.generateItemId(), name, unit, price, quantity);
+    public Ingredient addItem(String name, IngredientUnit unit, double quantity) {
         
-        if(!ingredientList.contains(ingredientToAdd)) {
-            ingredientList.addLast(ingredientToAdd);
-            added = true;
+        Ingredient ingredientToAdd = new Ingredient(this.generateItemId(), name, unit);
+        
+        if(!ingredientList.keySet().contains(ingredientToAdd)) {
+            ingredientList.put(ingredientToAdd, quantity);
         }
-        return added;
+        return ingredientToAdd;
     }
     
     /**
@@ -64,7 +72,7 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
     public boolean removeItem(Ingredient ingredientToRemove) {
         boolean removed = false;
         
-        if(ingredientList.contains(ingredientToRemove)) {
+        if(ingredientList.keySet().contains(ingredientToRemove)) {
             ingredientList.remove(ingredientToRemove);
             removed = true;
         }
@@ -72,42 +80,32 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
     }
 
     /**
-     * Method to update ingredient name.
-     * @param ingredientToUpdate Ingredient to update.
-     * @param newName New name for the ingredient.
-     * @return Return true if it has been correctly updated.
-     */
-    @Override
-    public boolean updateItemName(Ingredient ingredientToUpdate, String newName) {
-        boolean updated = false;
-        if(ingredientList.contains(ingredientToUpdate)) {
-            ingredientToUpdate.setIngredientName(newName);
-            updated = true;
-        }
-        return updated;
-    }
-
-    /**
      * Method to get ingredient list.
      * @return Return ingredient list.
      */
     @Override
-    public LinkedHashSet<Ingredient> getContents(){
-        return this.ingredientList;
+    public List<Ingredient> getContents(){
+        List<Ingredient> orderedIngredients = new ArrayList<>(ingredientList.keySet());
+        /** orderedIngredients.sort(Comparator.comparing(Ingredient :: getIngredientName));
+        */
+        Collections.sort(orderedIngredients, Comparator.comparing(Ingredient :: getIngredientName));
+        return orderedIngredients;
     }
     
     
     /**
      * Method to search ingredient.
      * @param ingredient Ingredient to search into the list.
-     */
-    public void searchIngredient(Ingredient ingredient) {
-        if(this.ingredientList.contains(ingredient)) {
-            System.out.println(ingredient);
-        }
-        else {
-            System.out.println(ingredient + " non presente.");
-        }
+     
+    public Object searchItemByName(String name) {
+        for(Ingredient ing : ingredientList.keySet()){
+                if(ing.getIngredientName() == name){
+                    return ing;
+                }
+                else{
+                    return false;
+                }
+            }
     }
-    
+    */
 }
