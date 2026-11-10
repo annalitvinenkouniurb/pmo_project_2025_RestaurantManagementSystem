@@ -4,8 +4,12 @@
  */
 package it.uniurb.RestaurantMS.recipe;
 
+import it.uniurb.RestaurantMS.clientorder.ClientOrder;
 import it.uniurb.RestaurantMS.core.RepoInterface;
+
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 /**
  *
@@ -75,7 +79,7 @@ public class RecipeRepository implements RepoInterface<Recipe>{
      * @param newName New name to set.
      * @return Return true if it has been correctly updated.
      */
-    @Override
+
     public boolean updateItemName(Recipe recipeToUpdate, String newName) {
         boolean updated = false;
         
@@ -108,4 +112,11 @@ public class RecipeRepository implements RepoInterface<Recipe>{
             }
     }
     
+    @Override
+    public List<Recipe> searchItemByName(String keyword){
+        List<Recipe> searchResults = new ArrayList<>();
+
+        return searchResults;
+    }
+
 }

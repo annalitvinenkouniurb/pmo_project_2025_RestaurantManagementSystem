@@ -4,7 +4,11 @@
  */
 package it.uniurb.RestaurantMS.stockorder;
 import it.uniurb.RestaurantMS.core.RepoInterface;
+import it.uniurb.RestaurantMS.stock.StockEntry;
+
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 /**
  *
@@ -73,7 +77,7 @@ public class StockOrderRepository implements RepoInterface<StockOrder>{
      * @param newName New name of the stock order.
      * @return Return true if it has been correctly updated.
      */
-    @Override
+
     public boolean updateItemName(StockOrder orderToUpdate, String newName) {
         boolean updated = false;
         
@@ -105,6 +109,13 @@ public class StockOrderRepository implements RepoInterface<StockOrder>{
     @Override
     public LinkedHashSet<StockOrder> getContents(){
         return this.orderList;
+    }
+
+    @Override
+    public List<StockOrder> searchItemByName(String keyword){
+        List<StockOrder> searchResults = new ArrayList<>();
+
+        return searchResults;
     }
     
 }

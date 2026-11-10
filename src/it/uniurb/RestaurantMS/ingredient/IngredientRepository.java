@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.stream.Collectors;
 /**
  *
  * @author lucapaolillo
@@ -69,12 +69,14 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
      * @return Return true if the ingredient has ben removed successfully.
      */
     @Override
-    public boolean removeItem(Ingredient ingredientToRemove) {
+    public boolean removeItem(String ingredientToRemove) {
         boolean removed = false;
         
-        if(ingredientList.keySet().contains(ingredientToRemove)) {
-            ingredientList.remove(ingredientToRemove);
-            removed = true;
+        for(Ingredient ing : this.ingredientList.keySet()){
+            if(ing.getIngredientName() == ingredientToRemove) {
+                System.out.println("Item to remove: " + ingredientToRemove);
+                removed = true;
+            }
         }
         return removed;
     }
@@ -86,8 +88,6 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
     @Override
     public List<Ingredient> getContents(){
         List<Ingredient> orderedIngredients = new ArrayList<>(ingredientList.keySet());
-        /** orderedIngredients.sort(Comparator.comparing(Ingredient :: getIngredientName));
-        */
         Collections.sort(orderedIngredients, Comparator.comparing(Ingredient :: getIngredientName));
         return orderedIngredients;
     }
@@ -96,16 +96,16 @@ public class IngredientRepository implements RepoInterface<Ingredient> {
     /**
      * Method to search ingredient.
      * @param ingredient Ingredient to search into the list.
-     
-    public Object searchItemByName(String name) {
-        for(Ingredient ing : ingredientList.keySet()){
-                if(ing.getIngredientName() == name){
-                    return ing;
-                }
-                else{
-                    return false;
-                }
-            }
-    }
     */
+
+    public List<Ingredient> searchItemByName(String keyword) {
+        String keywordLower = keyword.toLowerCase();
+        List<Ingredient> searchResults = new ArrayList<>();
+
+        searchResults = ingredientList.keySet().stream()
+                .filter(ingr -> ingr.getIngredientName().toLowerCase().contains(keywordLower))
+                .collect(Collectors.toList());
+
+        return searchResults;
+    }
 }

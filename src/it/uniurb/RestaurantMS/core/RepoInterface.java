@@ -5,6 +5,7 @@
 package it.uniurb.RestaurantMS.core;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -19,18 +20,11 @@ public interface RepoInterface<X> {
     public int generateItemId();
 
     /**
-     * Create new item.
-     * @param NewItemId Id od the new item to be crated.
-     * @return Returns the new item.
-     */
-    public X addItem(int NewItemId);
-    
-    /**
      * Method to remove item.
      * @param itemToRemove Item that has to be removed.
      * @return Return 1 if an element is successfully removed and 0 otherwise.
      */
-    public boolean removeItem(X itemToRemove);
+    public boolean removeItem(String itemToRemove);
     
     /**
      * Method to get the contents of specific colletion.
@@ -38,6 +32,6 @@ public interface RepoInterface<X> {
      */
     public Collection<X> getContents();
 
-    public Object searchItemByName(String name);
+    public List<X> searchItemByName(String keyword);
     
 }

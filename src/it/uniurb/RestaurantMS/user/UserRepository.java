@@ -6,8 +6,12 @@ package it.uniurb.RestaurantMS.user;
 
 import it.uniurb.RestaurantMS.user.User;
 import it.uniurb.RestaurantMS.core.RepoInterface;
+import it.uniurb.RestaurantMS.stockorder.StockOrder;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 /**
  *
@@ -86,7 +90,7 @@ public class UserRepository implements RepoInterface<User> {
      * @param newUserName New username to set.
      * @return Return true if it has been correctly updated.
      */
-    @Override
+
     public boolean updateItemName(User userToUpdate, String newUserName) {
         boolean updated = false;
         if(userList.contains(userToUpdate)) {
@@ -114,4 +118,10 @@ public class UserRepository implements RepoInterface<User> {
         return this.userList;
     }
     
+    @Override
+    public List<User> searchItemByName(String keyword){
+        List<User> searchResults = new ArrayList<>();
+
+        return searchResults;
+    }
 }

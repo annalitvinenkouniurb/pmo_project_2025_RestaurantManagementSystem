@@ -4,8 +4,12 @@
  */
 package it.uniurb.RestaurantMS.menu;
 
+import it.uniurb.RestaurantMS.clientorder.ClientOrder;
 import it.uniurb.RestaurantMS.core.RepoInterface;
+
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 /**
  *
@@ -73,7 +77,6 @@ public class MenuRepostiory implements RepoInterface<Menu>{
      * @param newName New menu repository name.
      * @return Return true if it has been correctly updated.
      */
-    @Override
     public boolean updateItemName(Menu menuToUpdate, String newName) {
         boolean updated = false;
         
@@ -93,4 +96,10 @@ public class MenuRepostiory implements RepoInterface<Menu>{
         return this.menuList;
     }
     
+    @Override
+    public List<Menu> searchItemByName(String keyword){
+        List<Menu> searchResults = new ArrayList<>();
+
+        return searchResults;
+    }
 }

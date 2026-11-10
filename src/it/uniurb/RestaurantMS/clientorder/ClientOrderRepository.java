@@ -5,7 +5,11 @@
 package it.uniurb.RestaurantMS.clientorder;
 
 import it.uniurb.RestaurantMS.core.RepoInterface;
+import it.uniurb.RestaurantMS.ingredient.Ingredient;
+
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 /**
  *
@@ -76,7 +80,6 @@ public class ClientOrderRepository implements RepoInterface<ClientOrder>{
      * @param newName Client order new name to set.
      * @return Return true if it has been correcly updated.
      */
-    @Override
     public boolean updateItemName(ClientOrder clientOrderToUpdate, String newName) {
         boolean updated = false;
         
@@ -94,6 +97,13 @@ public class ClientOrderRepository implements RepoInterface<ClientOrder>{
     @Override
     public LinkedHashSet<ClientOrder> getContents() {
         return this.orderList;
+    }
+    
+    @Override
+    public List<ClientOrder> searchItemByName(String keyword){
+        List<ClientOrder> searchResults = new ArrayList<>();
+
+        return searchResults;
     }
     
 }

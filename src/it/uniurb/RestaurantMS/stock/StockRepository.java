@@ -6,8 +6,12 @@ package it.uniurb.RestaurantMS.stock;
 
 import it.uniurb.RestaurantMS.core.RepoInterface;
 import it.uniurb.RestaurantMS.ingredient.Ingredient;
+import it.uniurb.RestaurantMS.recipe.Recipe;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 
 /**
@@ -81,7 +85,7 @@ public class StockRepository implements RepoInterface<StockEntry> {
      * @param newName Stock entry new name.
      * @return Return true if it has been correctly updated.
      */
-    @Override
+    
     public boolean updateItemName(StockEntry stockEntryToUpdate, String newName) {
         boolean updated = false;
         
@@ -100,5 +104,13 @@ public class StockRepository implements RepoInterface<StockEntry> {
     public LinkedHashSet<StockEntry> getContents(){
         return this.stockEntryList;
     }
+
+    @Override
+    public List<StockEntry> searchItemByName(String keyword){
+        List<StockEntry> searchResults = new ArrayList<>();
+
+        return searchResults;
+    }
+
     
 }
